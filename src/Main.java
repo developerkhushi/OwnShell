@@ -30,6 +30,7 @@ public class Main {
                 case "java":
                     executeJavaCode(sc);
                     break;
+
                 default:
                     if (input.startsWith("touch")) {
                         String[] parts = input.split("\\s+", 2);
@@ -72,12 +73,12 @@ public class Main {
     }
 
     public static void executeJavaCode(Scanner sc) {
-        System.out.print("Enter your java code (end with 'exit' on a new line):");
+        System.out.println("Enter your Java code (type 'exit' to stop):");
         StringBuilder javaCode = new StringBuilder();
 
         while (true) {
             String line = sc.nextLine();
-            if (line.equals("exit")) break;
+            if (line.equals("exit")) break; // Exit when user types 'exit'
             javaCode.append(line).append("\n");
         }
 
@@ -115,11 +116,11 @@ public class Main {
         } catch (IOException | InterruptedException e) {
             System.out.println("Error during compilation or execution: " + e.getMessage());
         } finally {
-            // Clean up generated files (if desired)
             new File("JavaProgram.java").delete();
             new File("JavaProgram.class").delete();
         }
     }
+
 
     public static void showCurrentLocation() {
         String currentLocation = System.getProperty("user.dir");
