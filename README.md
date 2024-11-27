@@ -1,4 +1,4 @@
-Interactive Java CLI Tool
+#Java REPL
 This is an interactive Command-Line Interface (CLI) tool written in Java. It mimics a shell-like environment, allowing users to execute various commands such as listing files, showing the current directory, creating empty files, and even executing blocks of Java code dynamically.
 
 Features
