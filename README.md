@@ -1,6 +1,7 @@
 # Java REPL CLI Tool
 
-This is a Java-based Command-Line Interface (CLI) tool that works like a custom shell. It allows users to interact with their system and execute Java code dynamically. By installing and configuring this tool, you can run it globally from anywhere on your system by typing java-repl in the terminal or command prompt.
+This is a Java-based Command-Line Interface (CLI) tool that functions as a custom shell. It allows users to interact with their system and execute Java code dynamically. Once you install and configure this tool, you can run it globally from anywhere on your system by typing java-repl in the terminal
+
 ---
 
 ## Features
