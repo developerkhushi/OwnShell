@@ -46,6 +46,7 @@ This is a Java-based Command-Line Interface (CLI) tool that functions as a custo
    ```
    
 3. **Compile the Program**:
+
    If you only have a Main.java file, run the following command to compile it:
    ```bash
    javac Main.java
@@ -58,10 +59,16 @@ This is a Java-based Command-Line Interface (CLI) tool that functions as a custo
  
 #### Additional Considerations:
 - **Dependencies**: If the project relies on external libraries, you must include them in the classpath when compiling and running the program. If the project doesn't have any dependencies, you can skip this step.
+  
 - **Manifest File**: When packaging the project into a JAR file, ensure that the Main class is set as the entry point. You can specify this in the MANIFEST.MF file. Here's a sample manifest:
    ```bash
    Manifest-Version: 1.0
    Main-Class: Main
+   ```
+   
+- **Running the JAR**: Once the JAR is packaged, you can run the application globally with:
+  ```bash
+   java -jar java-repl.jar
    ```
 
 ### Make it Globally Accessible
