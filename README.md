@@ -33,15 +33,36 @@ This is a Java-based Command-Line Interface (CLI) tool that functions as a custo
 
 ### Steps to Install
 
-1. **Compile the Program**:
+1. **Clone the Java REPL repository**:
+
+   ```bash
+   git clone https://github.com/developerkhushi/java-repl
+   ```
+
+2. **Navigate to the project directory**:
+
+   ```bash
+   cd java-repl
+   ```
+   
+3. **Compile the Program**:
+   If you only have a Main.java file, run the following command to compile it:
    ```bash
    javac Main.java
     ```
 
-2. **Package it into a JAR file (optional but recommended)**:
+5. **Package it into a JAR file (optional but recommended)**:
 	```bash
    jar cfe java-repl.jar Main Main.class
     ```
+ 
+#### Additional Considerations ####:
+- **Dependencies**: If the project relies on external libraries, you must include them in the classpath when compiling and running the program. If the project doesn't have any dependencies, you can skip this step.
+- **Manifest File**: When packaging the project into a JAR file, ensure that the Main class is set as the entry point. You can specify this in the MANIFEST.MF file. Here's a sample manifest:
+   ```bash
+        Manifest-Version: 1.0
+	Main-Class: Main
+   ```
 
 ### Make it Globally Accessible
 
@@ -128,4 +149,7 @@ The program automatically cleans up temporary files (JavaProgram.java and JavaPr
 
 ## Contributing
 
-This project is free and open-source. Contributions are welcome for improving functionality or adding features!
+Contributions are welcome for improving functionality or adding features!
+
+## License
+This project is free and open-source.
