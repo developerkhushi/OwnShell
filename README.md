@@ -6,13 +6,15 @@ This is a Java-based Command-Line Interface (CLI) tool that functions as a custo
 
 ## Features
 
-- **Interactive Shell Commands**:
-  - `ls`: List files and directories in the current working directory.
-  - `pwd`: Display the current working directory.
-  - `touch <filename>`: Create an empty file with the specified name.
-  - `java`: Write and execute Java code interactively.
-  - `help`: Show a list of available commands.
-  - `exit`: Exit the shell.
+### Dynamic Java Code Execution:
+- Write and execute Java code interactively.
+- Automatically compiles and runs the code, displaying the output or any compilation errors.
+- Cleans up temporary files after execution.
+
+### Interactive Shell Commands:
+- **`help`**: Displays a list of available commands.
+- **`<java_code>`**: Execute a block of Java code.
+- **`exit`**: Exit the REPL.
 
 ---
 
@@ -121,28 +123,19 @@ Welcome to my Interactive CLI Tool!
 | Command             | Description                                                                                       | Example                     |
 |---------------------|---------------------------------------------------------------------------------------------------|-----------------------------|
 | `help`              | Displays all available commands.                                                                  | `>>> help`                 |
-| `ls`                | Lists all files and directories in the current working directory.                                 | `>>> ls`                   |
-| `pwd`               | Prints the full path of the current working directory.                                            | `>>> pwd`                  |
-| `touch <filename>`  | Creates an empty file with the given name.                                                        | `>>> touch example.txt`    |
-| `java`              | Enter interactive mode to write and execute Java code dynamically.                                | `>>> java` (see example)   |
-| `exit`              | Exits the shell.                                                                                  | `>>> exit`                 |
+| `<java_code>`              | Enter and execute a block of Java code.                               | `>>> see example below  |
+| `exit`              | Exits the REPL.                                                                                  | `>>> exit`                 |
 
 
 ### Example: Running Java Code
 
-1. **Enter the `java` command**:
+1. **Enter the Java code directly (Finish with an empty line)**:
    ```bash
-   >>> java
-   ```
-   
-2. **Start typing your Java code**:
-   ```bash
-	Enter your Java code (type 'exit' to stop):
-	System.out.println("Hello, Java REPL!");
+    >>> System.out.println("Hello, Java REPL!");
     int x = 10;
     System.out.println("x squared is " + (x * x));
-    exit
-	```
+
+    ```
 
 3.  **The tool compiles and executes the code**:
 	```bash
