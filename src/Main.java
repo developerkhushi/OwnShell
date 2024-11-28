@@ -13,73 +13,34 @@ public class Main {
                 System.out.println("bye, thanks for using..");
                 break;
             }
-            if (input.equals("help")) {
-                System.out.println("ls : List of files and directories");
-                System.out.println("pwd : show the current working directory");
-                System.out.println("touch <filename> : create an empty file");
-                System.out.println("java <java_code> : execute a block of Java code");
-                System.out.println("exit : exit from the shell !");
-            }
-            switch (input) {
-                case "ls":
-                    listOfFilesInCurrentDirectory();
-                    break;
-                case "pwd":
-                    showCurrentLocation();
-                    break;
-                case "java":
-                    executeJavaCode(sc);
-                    break;
-
-                default:
-                    if (input.startsWith("touch")) {
-                        String[] parts = input.split("\\s+", 2);
-                        if (parts.length == 2) {
-                            createEmptyFile(parts[1]);
-                        } else {
-                            System.out.println("Usage: touch <filename>");
-                        }
-                    }
-                    else {
-                        System.out.println("Unknown command : " + input + "\nType 'help' to show commands..");
-                    }
-            }
-        }
-    }
-
-    public static void listOfFilesInCurrentDirectory() {
-        File currentDir = new File(".");
-        File[] files = currentDir.listFiles();
-        if (files != null && files.length > 0) {
-            for (File file : files) {
-                System.out.println(file.getName() + (file.isDirectory() ? "[DIR]" : ""));
-            }
-        } else {
-            System.out.println("No files in current directory");
-        }
-    }
-
-    public static void createEmptyFile(String fileName) {
-        File newFile = new File(fileName);
-        try {
-            if (newFile.createNewFile()) {
-                System.out.println("File created: " + newFile.getName());
+            else if (input.equals("help")) {
+                System.out.println("<java_code> : execute a block of Java code");
+                System.out.println("exit : exit from the REPL !");
             } else {
-                System.out.println("File already exists: " + newFile.getName());
+                executeJavaCode(input, sc);
             }
-        } catch (IOException e) {
-            System.out.println("Error while creating file: " + e.getMessage());
+            //System.out.println("Unknown command : " + input + "\nType 'help' to show commands..");
         }
     }
 
-    public static void executeJavaCode(Scanner sc) {
-        System.out.println("Enter your Java code (type 'exit' to stop):");
+    public static void executeJavaCode(String firstLine, Scanner sc) {
         StringBuilder javaCode = new StringBuilder();
-
+        javaCode.append(firstLine).append("\n");
+        int noOfBraces = 0;
+        for (char c : firstLine.toCharArray()) {
+            if (c == '{') noOfBraces++;
+            if (c == '}') noOfBraces--;
+        }
         while (true) {
             String line = sc.nextLine();
-            if (line.equals("exit")) break; // Exit when user types 'exit'
+            if (line.isEmpty() && noOfBraces == 0) {
+                break;
+            }
             javaCode.append(line).append("\n");
+            for (char c : line.toCharArray()) {
+                if (c == '{') noOfBraces++;
+                if (c == '}') noOfBraces--;
+            }
         }
 
         String fileName = "JavaProgram.java";
@@ -100,6 +61,12 @@ public class Main {
             int compileExitCode = compileProcess.waitFor();
             if (compileExitCode != 0) {
                 System.out.println("Compilation failed.");
+                try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(compileProcess.getErrorStream()))) {
+                    String errorLine;
+                    while ((errorLine = errorReader.readLine()) != null) {
+                        System.out.println(errorLine);
+                    }
+                }
                 return;
             }
 
@@ -121,9 +88,4 @@ public class Main {
         }
     }
 
-
-    public static void showCurrentLocation() {
-        String currentLocation = System.getProperty("user.dir");
-        System.out.println(currentLocation);
-    }
 }
